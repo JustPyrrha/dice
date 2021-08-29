@@ -27,6 +27,7 @@ jobs:
         uses: gradle/gradle-build-action@v1
         with:
           arguments: checkLicenses --stacktrace
+          gradle-version: current
           distributions-cache-enabled: true
           dependencies-cache-enabled: true
           configuration-cache-enabled: true
@@ -54,6 +55,7 @@ jobs:
         uses: gradle/gradle-build-action@v1
         with:
           arguments: test --stacktrace
+          gradle-version: current
           distributions-cache-enabled: true
           dependencies-cache-enabled: true
           configuration-cache-enabled: true
@@ -81,6 +83,7 @@ jobs:
         uses: gradle/gradle-build-action@v1
         with:
           arguments: build --stacktrace
+          gradle-version: current
           distributions-cache-enabled: true
           dependencies-cache-enabled: true
           configuration-cache-enabled: true

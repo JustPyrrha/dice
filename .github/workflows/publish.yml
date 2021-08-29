@@ -27,6 +27,7 @@ jobs:
         uses: gradle/gradle-build-action@v1
         with:
           arguments: publish --stacktrace
+          gradle-version: current
           distributions-cache-enabled: true
           dependencies-cache-enabled: true
           configuration-cache-enabled: true
