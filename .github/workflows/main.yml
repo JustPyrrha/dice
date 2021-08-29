@@ -43,7 +43,7 @@ jobs:
           fetch-depth: 1
 
       - name: Validate Wrapper
-        uses: gradle/validate-wrapper-action@v1
+        uses: gradle/wrapper-validation-action@v1
 
       - name: Setup JDK
         uses: actions/setup-java@v2
@@ -71,7 +71,7 @@ jobs:
           fetch-depth: 1
 
       - name: Validate Wrapper
-        uses: gradle/validate-wrapper-action@v1
+        uses: gradle/wrapper-validation-action@v1
 
       - name: Setup JDK
         uses: actions/setup-java@v2
