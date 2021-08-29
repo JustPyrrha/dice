@@ -1,0 +1,82 @@
+name: Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Validate:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Validate Wrapper
+        uses: gradle/validate-wrapper-action@v1
+
+      - name: Setup JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+          distribution: adopt
+
+      - name: Validate
+        uses: gradle/gradle-build-action@v1
+        with:
+          arguments: checkLicenses --stacktrace
+          distributions-cache-enabled: true
+          dependencies-cache-enabled: true
+          configuration-cache-enabled: true
+
+  Test:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Validate Wrapper
+        uses: gradle/validate-wrapper-action@v1
+
+      - name: Setup JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+          distribution: adopt
+
+      - name: Test
+        uses: gradle/gradle-build-action@v1
+        with:
+          arguments: test --stacktrace
+          distributions-cache-enabled: true
+          dependencies-cache-enabled: true
+          configuration-cache-enabled: true
+
+  Build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Validate Wrapper
+        uses: gradle/validate-wrapper-action@v1
+
+      - name: Setup JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+          distribution: adopt
+
+      - name: Build
+        uses: gradle/gradle-build-action@v1
+        with:
+          arguments: build --stacktrace
+          distributions-cache-enabled: true
+          dependencies-cache-enabled: true
+          configuration-cache-enabled: true
