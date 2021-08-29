@@ -32,6 +32,8 @@ jobs:
           configuration-cache-enabled: true
 
   Test:
+    needs:
+      - Validate
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout Repository
@@ -57,6 +59,8 @@ jobs:
           configuration-cache-enabled: true
 
   Build:
+    needs:
+      - Build
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout Repository
