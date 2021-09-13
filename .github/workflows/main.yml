@@ -60,6 +60,14 @@ jobs:
           dependencies-cache-enabled: true
           configuration-cache-enabled: true
 
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: dev.pyrrha.dice
+          path: |
+            build/libs/*.jar
+            !build/libs/**-dev.jar
+
   Test:
     needs:
       - Build
