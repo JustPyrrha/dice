@@ -31,7 +31,7 @@ license {
     include("**/dev/pyrrha/**/*.kt")
     ext {
         set("year", Year.now().value)
-        set("holder", "Pyrrha")
+        set("holder", "PyrrhaDev")
     }
 }
 
