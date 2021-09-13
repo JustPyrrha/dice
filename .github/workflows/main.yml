@@ -34,7 +34,7 @@ jobs:
 
   Build:
     needs:
-      - Test
+      - Validate
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout Repository
@@ -62,7 +62,7 @@ jobs:
 
   Test:
     needs:
-      - Validate
+      - Build
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout Repository
