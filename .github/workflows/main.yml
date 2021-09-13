@@ -32,34 +32,6 @@ jobs:
           dependencies-cache-enabled: true
           configuration-cache-enabled: true
 
-  Test:
-    needs:
-      - Validate
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 1
-
-      - name: Validate Wrapper
-        uses: gradle/wrapper-validation-action@v1
-
-      - name: Setup JDK
-        uses: actions/setup-java@v2
-        with:
-          java-version: 11
-          distribution: adopt
-
-      - name: Test
-        uses: gradle/gradle-build-action@v1
-        with:
-          arguments: test --stacktrace
-          gradle-version: current
-          distributions-cache-enabled: true
-          dependencies-cache-enabled: true
-          configuration-cache-enabled: true
-
   Build:
     needs:
       - Test
@@ -83,6 +55,34 @@ jobs:
         uses: gradle/gradle-build-action@v1
         with:
           arguments: build --stacktrace
+          gradle-version: current
+          distributions-cache-enabled: true
+          dependencies-cache-enabled: true
+          configuration-cache-enabled: true
+
+  Test:
+    needs:
+      - Validate
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Validate Wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Setup JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+          distribution: adopt
+
+      - name: Test
+        uses: gradle/gradle-build-action@v1
+        with:
+          arguments: test --stacktrace
           gradle-version: current
           distributions-cache-enabled: true
           dependencies-cache-enabled: true
