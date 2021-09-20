@@ -9,6 +9,8 @@ plugins {
 
 group = "dev.pyrrha"
 version = "0.0.0"
+val isSnapshot = System.getenv("GITHUB_EVENT_NAME")?.equals("push") ?: true
+if(isSnapshot) version = "$version${versionMeta()}"
 
 repositories {
     mavenCentral()
@@ -78,11 +80,23 @@ publishing {
     }
 
     repositories {
-        maven {
-            setUrl("s3://cdn.pyrrha.dev/maven")
+        maven(if(isSnapshot) "https://mvn.pyrrha.dev/snapshots/" else "https://mvn.pyrrha.dev/") {
+            name = "maven"
+            credentials(PasswordCredentials::class)
             authentication {
-                register("awsIm", AwsImAuthentication::class)
+                register("basic", BasicAuthentication::class)
             }
         }
     }
+}
+
+fun versionMeta(): String {
+    var sha = System.getenv("GITHUB_SHA") ?: ""
+    var ref = System.getenv("GITHUB_REF") ?: ""
+    if(sha.isEmpty() && ref.isEmpty()) return ""
+
+    sha = sha.substring(0, 7)
+    ref = ref.substring("refs/heads/".length)
+
+    return "+$ref.$sha"
 }
