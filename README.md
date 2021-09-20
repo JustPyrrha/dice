@@ -1,5 +1,7 @@
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/joezwet/dice/Main?logo=github-actions&logoColor=white&style=flat-square)
-![Maven metadata URL](https://img.shields.io/maven-metadata/v?logo=apache-maven&metadataUrl=https%3A%2F%2Fcdn.pyrrha.dev%2Fmaven%2Fdev%2Fpyrrha%2Fdice%2Fmaven-metadata.xml&style=flat-square)
+![Maven metadata URL](https://img.shields.io/maven-metadata/v?label=release&logo=apache-maven&metadataUrl=https%3A%2F%2Fmvn.pyrrha.dev%2Fdev%2Fpyrrha%2Fdice%2Fmaven-metadata.xml&style=flat-square)
+![Maven metadata URL](https://img.shields.io/maven-metadata/v?label=snapshot&logo=apache-maven&metadataUrl=https%3A%2F%2Fmvn.pyrrha.dev%2Fsnapshots%2Fdev%2Fpyrrha%2Fdice%2Fmaven-metadata.xml&style=flat-square)
+
 # dice
 Kotlin TTRPG dice library
 
@@ -8,7 +10,7 @@ Gradle:
 ```groovy
 repositories {
     maven {
-        url "https://cdn.pyrrha.dev/maven"
+        url "https://mvn.pyrrha.dev/"
     }
 }
 
@@ -23,7 +25,7 @@ dependencies {
 
 ```kotlin
 repositories {
-    maven("https://cdn.pyrrha.dev/maven")
+    maven("https://mvn.pyrrha.dev/")
 }
 
 dependencies {
@@ -37,7 +39,7 @@ Maven:
 ```xml
  <repositories>
     <repository>
-        <url>https://cdn.pyrrha.dev/maven</url>
+        <url>https://mvn.pyrrha.dev/</url>
     </repository>
 </repositories>
 
