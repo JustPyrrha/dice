@@ -95,3 +95,34 @@ jobs:
           distributions-cache-enabled: true
           dependencies-cache-enabled: true
           configuration-cache-enabled: true
+
+  Publish:
+    needs:
+      - Test
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Validate Wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Setup JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+          distribution: adopt
+
+      - name: Publish
+        uses: gradle/gradle-build-action@v1
+        with:
+          arguments: publish --stacktrace
+          gradle-version: current
+          distributions-cache-enabled: true
+          dependencies-cache-enabled: true
+          configuration-cache-enabled: true
+        env:
+          ORG_GRADLE_PROJECT_mavenUsername: ${{ secrets.MAVEN_USER }}
+          ORG_GRADLE_PROJECT_mavenPassword: ${{ secrets.MAVEN_PASS }}
